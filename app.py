@@ -34,6 +34,16 @@ def index():
         jr.append(r)
     return render_template("index.html", jr=jr)
 
+@app.route("/time_series/<int:url_id>")
+def paths_for_url(url_id):
+    jr = []
+    result_set = db.execute(f"SELECT path FROM records WHERE url_id={url_id} GROUP BY path") 
+    for r in result_set:
+        jr.append(r)
+    return render_template("paths.html", jr=jr, url_id=url_id)
+
+
+
 @app.route('/time_series/<int:url_id>/<string:path>')
 def show(url_id, path):
     jr = []

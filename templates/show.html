@@ -1,6 +1,7 @@
 
 
 {% for x in jr %}
-{{ x }} </br>
+
+{{ x[4].strftime('%Y-%m-%d %H:%M:%S') }}  {{ x[3]}}</br> 
 
 {% endfor %}

@@ -60,7 +60,7 @@ def show_json(url_id, path):
         jr.append(r[3])
     #return jsonify({'data': [dict(row) for row in jr]})
     #return jsonify({"data1":jr})
-    return json.dumps({"data1":jr})
+    return json.dumps({path:jr})
 
 
 @app.route('/10minutes')

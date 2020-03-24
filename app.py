@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request, redirect, url_for
 
 # Temporal App related requirements 
 import requests
@@ -62,8 +62,21 @@ def show_json(url_id, path):
     #return jsonify({"data1":jr})
     return json.dumps({path:jr})
 
+@app.route('/add_url', methods=["GET", "POST"])s
+def add_url():
+    if request.method == "GET":
+        return render_template('addurl.html')
+    if request.method == "POST":
+        url = request.form['url']
+        db.execute(f"INSERT INTO urls (http, status) VALUES ('{url}','active')")
+        return redirect(url_for('hello_world'))
+
+
+
+
+        
 
 @app.route('/10minutes')
 def hello_world():
     insert_records()
-    return '200'
+    return redirect(url_for('index'))

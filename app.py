@@ -62,7 +62,7 @@ def show_json(url_id, path):
     #return jsonify({"data1":jr})
     return json.dumps({path:jr})
 
-@app.route('/add_url', methods=["GET", "POST"])s
+@app.route('/add_url', methods=["GET", "POST"])
 def add_url():
     if request.method == "GET":
         return render_template('addurl.html')

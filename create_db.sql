@@ -1,6 +1,6 @@
 CREATE TABLE urls (
   id serial,
-  http varchar(100) NOT NULL,
+  http varchar(100) NOT NULL UNIQUE,
   status varchar(100) NOT NULL,
   PRIMARY KEY (id)
 );
@@ -11,7 +11,7 @@ CREATE TABLE urls (
 
 CREATE TABLE records (
   id serial,
-  url_id integer NOT NULL UNIQUE,
+  url_id integer NOT NULL,
   path text, 
   metric real,
   published_date timestamp DEFAULT CURRENT_TIMESTAMP,

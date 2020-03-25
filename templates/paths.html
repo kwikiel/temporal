@@ -1,5 +1,57 @@
 
-<base href="/time_series/{{ url_id }}/" />
+
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+    <h1>Index</h1>
+
+
+
+    <base href="/time_series/{{ url_id }}/" />
+
+    <table>
+        <thead>
+          <tr>
+              <th>URL </th>
+              <th>PATH</th>
+              <th>STATUS </th>
+          </tr>
+        </thead>
+    
+        <tbody>
+
+{% for x in jr %}
+
+
+<tr>
+    <td>{{x[0]}}</td>
+    <td>
+        <a href="{{ x[0] }}"> {{ x[0] }} </a> </br>
+    </td>
+    <td>{{x[1]}}</td>
+    <td>{{x[2]}}</td>
+  </tr>
+
+{% endfor %}
+
+    </tbody>
+  </table>
+
+
+<base href="" />
+<a href="/add_url">Add new URL </a>
+{% endblock %}
+
+
+
+
+
 {% for x in jr %}
 
 <a href="{{ x[0] }}"> {{ x[0] }} </a> </br>

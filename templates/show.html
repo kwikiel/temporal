@@ -33,7 +33,7 @@ fetch(url)
 function cwd(foo) {
     var chart = c3.generate({
     data: {
-        xFormat: '%Y-%m-%d %H:%M:%S',
+        xFormat: '%Y-%m-%dT%H:%M:%S',
         x: 'x',
 //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
         columns: [
@@ -46,7 +46,7 @@ function cwd(foo) {
         x: {
             type: 'timeseries',
             tick: {
-                format: '%Y-%m-%d %H:%M:%S'
+                format: '%Y-%m-%dT%H:%M:%S'
             }
         }
     }

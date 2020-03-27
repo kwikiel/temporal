@@ -18,15 +18,45 @@
 
 
 <script>
-setTimeout(function () {
-    c3.generate({
-        data: {
-            url: window.location.href+'/json',
-            //url: "https://c3js.org/data/c3_test.json",
-            mimeType: "json"
+let url = window.location.href+'/json'
+let kek; 
+fetch(url)
+.then(res => res.json())
+.then((out) => {
+    kek = out;
+    cwd(kek);
+  console.log('Checkout this JSON! ', out);
+})
+.catch(err => { throw err });
+
+
+function cwd(foo) {
+    var chart = c3.generate({
+    data: {
+        xFormat: '%Y-%m-%d %H:%M:%S',
+        x: 'x',
+//        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
+        columns: [
+            ['x'].concat(kek["dates"]),
+//            ['x', '20130101', '20130102', '20130103', '20130104', '20130105', '20130106'],
+            ['data1'].concat(kek[String(window.location.href+'/json').split("/")[5]])
+        ]
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%Y-%m-%d %H:%M:%S'
+            }
         }
-    });
-}, 1000);
+    }
+});
+}
+
+
+
+
+
 
 
 

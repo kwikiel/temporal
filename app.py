@@ -55,12 +55,14 @@ def show(url_id, path):
 @app.route('/time_series/<int:url_id>/<string:path>/json')
 def show_json(url_id, path):
     jr = []
+    dates = [] 
     result_set = db.execute(f"SELECT * FROM records WHERE url_id={url_id} AND path='{path}'") 
     for r in result_set:
+        dates.append(r[4].strftime("%Y-%m-%d %H:%M:%S"))
         jr.append(r[3])
     #return jsonify({'data': [dict(row) for row in jr]})
     #return jsonify({"data1":jr})
-    return json.dumps({path:jr})
+    return json.dumps({path:jr, "dates":dates})
 
 @app.route('/add_url', methods=["GET", "POST"])
 def add_url():

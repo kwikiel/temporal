@@ -58,7 +58,7 @@ def show_json(url_id, path):
     dates = [] 
     result_set = db.execute(f"SELECT * FROM records WHERE url_id={url_id} AND path='{path}'") 
     for r in result_set:
-        dates.append(r[4].strftime("%Y-%m-%d %H:%M:%S"))
+        dates.append(r[4].strftime("%Y-%m-%d %H:%M"))
         jr.append(r[3])
     #return jsonify({'data': [dict(row) for row in jr]})
     #return jsonify({"data1":jr})

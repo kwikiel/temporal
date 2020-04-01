@@ -25,7 +25,13 @@ def insert_records():
         for x,y in flat_dict(r[1]).items():
             db.execute(f"INSERT INTO records (url_id, path, metric) VALUES ({r[0]},'{x}',{y})")
 
+
 @app.route('/')
+def landing_page():
+    return render_template("landing.html")
+
+
+@app.route('/app')
 def index():
     # Todo link to url_id and possible paths 
     jr = []

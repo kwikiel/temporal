@@ -10,7 +10,7 @@ from sqlalchemy import create_engine
 from utils import flat_dict 
 from utils import flatten_json
 import os 
-SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+SQLALCHEMY_DATABASE_URI = os.environ['HEROKU_POSTGRESQL_CYAN_URL']
 app = Flask(__name__)
 
 # Config to another file which is not commited to Github

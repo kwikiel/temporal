@@ -8,7 +8,9 @@ def flat_dict(url):
     for x, y in baz.items():
         try:
             if(float(y)!=0.0):
-                fd[x] = float(y) 
+                fd[x] = float(y)
+            if(float(y)==0):
+                fd[x] = float(y)
         except:
             pass
     return fd

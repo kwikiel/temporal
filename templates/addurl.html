@@ -1,5 +1,19 @@
-<form action = "/add_url" method = "post">
-    <p>Enter URL: ( full url with http:// ... ) </p>
-    <p><input type = "text" name = "url" /></p>
-    <p><input type = "submit" value = "submit" /></p>
- </form>
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+    <h1>Index</h1>
+
+    <form action = "/add_url" method = "post">
+        <p>Enter URL: ( full url with http:// ... ) </p>
+        <p><input type = "text" name = "url" /></p>
+        <p><input type = "submit" value = "submit" /></p>
+     </form>
+
+    {% endblock %}
+

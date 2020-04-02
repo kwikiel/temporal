@@ -9,12 +9,17 @@ from sqlalchemy import create_engine
 #Helper functions TODO put in another module 
 from utils import flat_dict 
 from utils import flatten_json
-
+import os 
+SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 app = Flask(__name__)
 
 # Config to another file which is not commited to Github
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-db_string = "postgres://jmpghcklooyqqc:829aa0758cbf569bc0e9f59351c32d08cf65f7ac9bb72cdd93517d9f7ae51c4f@ec2-54-247-169-129.eu-west-1.compute.amazonaws.com:5432/ddntt771qmmvnr"
+
+db_string = SQLALCHEMY_DATABASE_URI
+
+
 db = create_engine(db_string)
 
 def insert_records():

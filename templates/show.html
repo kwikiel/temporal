@@ -1,20 +1,24 @@
-<!doctype html>
-<html lang="en">
-<head>
-   <title>Document</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.15/c3.css" rel="stylesheet">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.15/c3.js"></script>
+{% endblock %}
+{% block content %}
     <div id="chart"></div>
 
 
 
-</body>
-<!-- Load c3.css -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.15/c3.css" rel="stylesheet">
 
-<!-- Load d3.js and c3.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.js" charset="utf-8"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.15/c3.js"></script>
+<!-- Load c3.css -->
+
 
 
 <script>
@@ -62,10 +66,8 @@ function cwd(foo) {
 
 </script>
 
-<style>
 
-</style>
-
+{% endblock %}
 
 
 </html>

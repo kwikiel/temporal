@@ -78,6 +78,30 @@ def show_json(url_id, path):
     #return jsonify({"data1":jr})
     return json.dumps({path:jr, "dates":dates})
 
+# This is similar to above json but with csv
+@app.route('/time_series/<int:url_id>/<string:path>/csv')
+def show_csv(url_id, path):
+    jr = []
+    dates = [] 
+    result_set = db.execute(f"SELECT * FROM records WHERE url_id={url_id} AND path='{path}'") 
+    for r in result_set:
+        dates.append(r[4].strftime("%Y-%m-%dT%H:%M:%S"))
+        jr.append(r[3])
+    #return jsonify({'data': [dict(row) for row in jr]})
+    #return jsonify({"data1":jr})
+    #return json.dumps({path:jr, "dates":dates})
+
+    output = "data,value \n"
+    result_set = db.execute(f"SELECT * FROM records WHERE url_id=1 AND path='liquidity_0_iETH'") 
+    for r in result_set:
+        output += r[-1].strftime("%Y-%m-%dT%H:%M:%S") +","+str(r[3]) +"\n"
+    response = make_response(output)
+    response.headers['Content-Type'] = 'text/plain; charset=utf-8'
+    return response
+
+
+    
+
 @app.route('/add_url', methods=["GET", "POST"])
 def add_url():
     if request.method == "GET":
@@ -95,35 +119,18 @@ def hello_world():
 
 @app.route('/download')
 def download():
-    csv = '''price
-75.0
-104.0
-369.0
-300.0
-92.0
-64.0
-265.0
-35.0
-287.0
-69.0
-52.0
-23.0
-287.0
-87.0
-114.0
-114.0
-98.0
-137.0
-87.0
-90.0
-63.0
-69.0
-80.0
-113.0
-58.0
-115.0
-30.0
-35.0
+    csv = '''
+    date,value
+2013-04-28,135.98
+2013-04-29,147.49
+2013-04-30,146.93
+2013-05-01,139.89
+2013-05-02,125.6
+2013-05-03,108.13
+2013-05-04,115
+2013-05-05,118.8
+2013-05-06,124.66
+2013-05-07,113.44
 '''
     response = make_response(csv)
     response.headers['Content-Type'] = 'text/plain; charset=utf-8'

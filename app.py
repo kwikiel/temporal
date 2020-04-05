@@ -91,7 +91,7 @@ def show_csv(url_id, path):
     #return jsonify({"data1":jr})
     #return json.dumps({path:jr, "dates":dates})
 
-    output = "date,value \n"
+    output = "date,value\n"
     result_set = db.execute(f"SELECT * FROM records WHERE url_id=1 AND path='liquidity_0_iETH'") 
     for r in result_set:
         output += r[-1].strftime("%Y-%m-%dT%H:%M:%S") +","+str(int(r[3])) +"\n"

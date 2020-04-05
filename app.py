@@ -96,11 +96,36 @@ def hello_world():
 @app.route('/download')
 def download():
     csv = '''
-date,value \n
-2013-04-28,135.98 \n
-2013-04-29,147.49 \n
-2013-04-30,146.93 \n
-    '''
+price
+75.0
+104.0
+369.0
+300.0
+92.0
+64.0
+265.0
+35.0
+287.0
+69.0
+52.0
+23.0
+287.0
+87.0
+114.0
+114.0
+98.0
+137.0
+87.0
+90.0
+63.0
+69.0
+80.0
+113.0
+58.0
+115.0
+30.0
+35.0
+'''
     response = make_response(csv)
     #response.headers["Content-Disposition"] = "attachment; filename=books.csv"
     return response

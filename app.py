@@ -1,4 +1,5 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, make_response
+from flask_cors import CORS
 
 # Temporal App related requirements 
 import requests
@@ -12,6 +13,8 @@ from utils import flatten_json
 import os 
 SQLALCHEMY_DATABASE_URI = os.environ['HEROKU_POSTGRESQL_CYAN_URL']
 app = Flask(__name__)
+
+CORS(app)
 
 # Config to another file which is not commited to Github
 app.config['TEMPLATES_AUTO_RELOAD'] = True

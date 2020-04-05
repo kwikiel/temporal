@@ -94,7 +94,7 @@ def show_csv(url_id, path):
     output = "date,value \n"
     result_set = db.execute(f"SELECT * FROM records WHERE url_id=1 AND path='liquidity_0_iETH'") 
     for r in result_set:
-        output += r[-1].strftime("%Y-%m-%dT%H:%M:%S") +","+str(r[3]) +"\n"
+        output += r[-1].strftime("%Y-%m-%dT%H:%M:%S") +","+str(int(r[3])) +"\n"
     response = make_response(output)
     response.headers['Content-Type'] = 'text/plain; charset=utf-8'
     return response

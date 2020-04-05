@@ -95,8 +95,7 @@ def hello_world():
 
 @app.route('/download')
 def download():
-    csv = '''
-price
+    csv = '''price
 75.0
 104.0
 369.0
@@ -127,5 +126,6 @@ price
 35.0
 '''
     response = make_response(csv)
+    response.headers['Content-Type'] = 'text/plain; charset=utf-8'
     #response.headers["Content-Disposition"] = "attachment; filename=books.csv"
     return response

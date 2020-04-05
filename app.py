@@ -105,24 +105,3 @@ def add_url():
 def hello_world():
     insert_records()
     return redirect(url_for('index'))
-
-
-@app.route('/download')
-def download():
-    csv = '''
-    date,value
-2013-04-28,135.98
-2013-04-29,147.49
-2013-04-30,146.93
-2013-05-01,139.89
-2013-05-02,125.6
-2013-05-03,108.13
-2013-05-04,115
-2013-05-05,118.8
-2013-05-06,124.66
-2013-05-07,113.44
-'''
-    response = make_response(csv)
-    response.headers['Content-Type'] = 'text/plain; charset=utf-8'
-    #response.headers["Content-Disposition"] = "attachment; filename=books.csv"
-    return response

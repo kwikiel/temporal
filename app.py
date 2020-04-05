@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, redirect, url_for
+from flask import Flask, render_template, jsonify, request, redirect, url_for, make_response
 
 # Temporal App related requirements 
 import requests
@@ -84,12 +84,20 @@ def add_url():
         db.execute(f"INSERT INTO urls (http, status) VALUES ('{url}','active')")
         return redirect(url_for('hello_world'))
 
-
-
-
-        
-
 @app.route('/10minutes')
 def hello_world():
     insert_records()
     return redirect(url_for('index'))
+
+
+@app.route('/download')
+def download():
+    csv = '''
+date,value \n
+2013-04-28,135.98 \n
+2013-04-29,147.49 \n
+2013-04-30,146.93 \n
+    '''
+    response = make_response(csv)
+    #response.headers["Content-Disposition"] = "attachment; filename=books.csv"
+    return response

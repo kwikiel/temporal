@@ -81,18 +81,8 @@ def show_json(url_id, path):
 # This is similar to above json but with csv
 @app.route('/time_series/<int:url_id>/<string:path>/csv')
 def show_csv(url_id, path):
-    jr = []
-    dates = [] 
-    result_set = db.execute(f"SELECT * FROM records WHERE url_id={url_id} AND path='{path}'") 
-    for r in result_set:
-        dates.append(r[4].strftime("%Y-%m-%dT%H:%M:%S"))
-        jr.append(r[3])
-    #return jsonify({'data': [dict(row) for row in jr]})
-    #return jsonify({"data1":jr})
-    #return json.dumps({path:jr, "dates":dates})
-
     output = "date,value\n"
-    result_set = db.execute(f"SELECT * FROM records WHERE url_id=1 AND path='liquidity_0_iETH'") 
+    result_set = db.execute(f"SELECT * FROM records WHERE url_id={url_id} AND path='{path}'") 
     for r in result_set:
         output += r[-1].strftime("%Y-%m-%dT%H:%M:%S") +","+str(int(r[3])) +"\n"
     response = make_response(output)

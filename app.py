@@ -70,7 +70,7 @@ def show(url_id, path):
 def show_json(url_id, path):
     jr = []
     dates = [] 
-    result_set = db.execute(f"SELECT * FROM records WHERE url_id={url_id} AND path='{path}'") 
+    result_set = db.execute(f"SELECT * FROM records WHERE url_id={url_id} AND path='{path}' ORDER BY published_date") 
     for r in result_set:
         dates.append(r[4].strftime("%Y-%m-%dT%H:%M:%S"))
         jr.append(r[3])
@@ -82,7 +82,7 @@ def show_json(url_id, path):
 @app.route('/time_series/<int:url_id>/<string:path>/csv')
 def show_csv(url_id, path):
     output = "date,value\n"
-    result_set = db.execute(f"SELECT * FROM records WHERE url_id={url_id} AND path='{path}'") 
+    result_set = db.execute(f"SELECT * FROM records WHERE url_id={url_id} AND path='{path}' ORDER BY published_date") 
     for r in result_set:
         output += r[-1].strftime("%Y-%m-%dT%H:%M:%S") +","+str(int(r[3])) +"\n"
     response = make_response(output)

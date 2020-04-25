@@ -33,6 +33,17 @@ def insert_records():
         for x,y in flat_dict(r[1]).items():
             db.execute(f"INSERT INTO records (url_id, path, metric) VALUES ({r[0]},'{x}',{y})")
 
+@app.route('/create_db')
+def create_db():
+    db.execute("CREATE TABLE urls (id serial,http varchar(100) NOT NULL UNIQUE,status varchar(100) NOT NULL,PRIMARY KEY (id));")
+    db.execute("CREATE TABLE records (id serial,url_id integer NOT NULL,path text, metric real,published_date timestamp DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY (id)FOREIGN KEY (url_id) REFERENCES urls(id) ON DELETE CASCADE;")
+
+    return "DB created"
+
+
+
+
+
 
 @app.route('/')
 def landing_page():

@@ -12,7 +12,7 @@ from utils import flat_dict
 from utils import flatten_json
 import os 
 
-SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+SQLALCHEMY_DATABASE_URI = os.environ['DOKKU_POSTGRES_AQUA_URL']
 app = Flask(__name__)
 
 CORS(app)

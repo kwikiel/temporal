@@ -23,7 +23,7 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 #db_string = SQLALCHEMY_DATABASE_URI
 
-db_string = "postgres://postgres:fdc0d785cc5d31d2bedff52a5bfa0954@dokku-postgres-lolipop:5432/lolipop"
+db_string = "postgres://postgres:fdc0d785cc5d31d2bedff52a5bfa0954@trackato.com:12290/lolipop"
 
 db = create_engine(db_string)
 
